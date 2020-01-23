@@ -14,8 +14,8 @@ public class AsteroidCollision : MonoBehaviour
 		else if (other.attachedRigidbody.name == "BulletCapsule")
 		{
 			GameManager.instance.incScore();
-			Destroy(other.gameObject);
-			Destroy(gameObject);
+			Destroy(other.gameObject.transform.parent.gameObject);
+			Destroy(gameObject.transform.parent.gameObject);
 		}
 	}
 }
