@@ -9,11 +9,12 @@ public class AsteroidSpawner : MonoBehaviour
 	private float lastSpawn = 0.0f;
 	public GameObject asteroid;
 	private Vector2 screenBounds;
+	private float hypo;
 
 	void Start()
 	{
 		screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-		screenBounds *= 2;
+		hypo = 2 * screenBounds.y;
 	}
 
     // Update is called once per frame

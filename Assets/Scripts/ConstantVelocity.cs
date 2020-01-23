@@ -10,7 +10,7 @@ public class ConstantVelocity : MonoBehaviour
 	void Start()
 	{
 		screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-		screenBounds *= 2;
+		screenBounds *= 3;
 	}
 
     // Update is called once per frame
