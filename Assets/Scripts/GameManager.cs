@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	public bool dead = false;
 	public float respawnTime = 5.0f;
 	public float sinceDead = 0.0f;
+	public float aliveTime = 0.0f;
 
 	void Awake()
 	{
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
 			}
 			else
 				sinceDead += Time.fixedDeltaTime;
+		}
+		else
+		{
+			aliveTime += Time0.fixedDeltaTime;
 		}
 	}
 
