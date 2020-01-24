@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			aliveTime += Time0.fixedDeltaTime;
+			aliveTime += Time.fixedDeltaTime;
 		}
 	}
 
