@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
 	public int score = 0;
+	public float highScore = 0;
 	public bool dead = false;
 	public float respawnTime = 5.0f;
 	public float sinceDead = 0.0f;
@@ -34,9 +35,8 @@ public class GameManager : MonoBehaviour
 		{
 			if (sinceDead >= respawnTime)
 			{
-				dead = false;
-				Reset();
 				SceneManager.LoadScene("SampleScene");
+				Reset();
 			}
 			else
 				sinceDead += Time.fixedDeltaTime;
@@ -50,5 +50,6 @@ public class GameManager : MonoBehaviour
 	private void Reset()
 	{
 		score = 0;
+		dead = false;
 	}
 }
