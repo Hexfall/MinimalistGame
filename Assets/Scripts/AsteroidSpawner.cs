@@ -6,6 +6,7 @@ public class AsteroidSpawner : MonoBehaviour
 {
 	public float speed;
 	public float spawnTime;
+	public float doubleDiffTime;
 	private float lastSpawn = 0.0f;
 	public GameObject asteroid;
 
@@ -14,7 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
     {
 		if (GameManager.instance.dead)
 			return;
-		if (lastSpawn >= spawnTime)
+		if (lastSpawn >= spawnTime / (GameManager.instance.aliveTime / doubleDiffTime))
 		{
 			Spawn();
 			lastSpawn = 0;
