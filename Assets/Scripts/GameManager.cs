@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
 	public int score = 0;
-	public float highScore = 0;
 	public bool dead = false;
 	public float respawnTime = 5.0f;
 	public float sinceDead = 0.0f;
