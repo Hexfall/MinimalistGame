@@ -10,12 +10,17 @@ public class AsteroidSpawner : MonoBehaviour
 	private float lastSpawn = 0.0f;
 	public GameObject asteroid;
 
+	void Start()
+	{
+		lastSpawn = spawnTime / 2;
+	}
+
     // Update is called once per frame
     void FixedUpdate()
     {
 		if (GameManager.instance.dead)
 			return;
-		if (lastSpawn >= spawnTime / (GameManager.instance.aliveTime / doubleDiffTime))
+		if (lastSpawn * (Mathf.Sin(GameManager.instance.aliveTime) + .2) >= spawnTime / ((GameManager.instance.aliveTime + doubleDiffTime) / doubleDiffTime))
 		{
 			Spawn();
 			lastSpawn = 0;

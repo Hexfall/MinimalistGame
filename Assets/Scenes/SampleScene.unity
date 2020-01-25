@@ -936,8 +936,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  spawnTime: 2
-  doubleDiffTime: 5
+  spawnTime: 1
+  doubleDiffTime: 8
   asteroid: {fileID: 1832754578805057983, guid: 5d40d3e41cc9d1b46b730869da9402b8,
     type: 3}
 --- !u!4 &1371599150
