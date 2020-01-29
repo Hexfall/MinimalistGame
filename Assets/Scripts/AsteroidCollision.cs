@@ -4,28 +4,41 @@ using UnityEngine;
 
 public class AsteroidCollision : MonoBehaviour
 {
+	public GameObject explosion;
+	private AudioSource sound;
+
+	void Start()
+	{
+		sound = GameManager.instance.GetComponent<AudioSource>();
+	}
+
     private void OnTriggerEnter2D(Collider2D other)
 	{
-		AudioSource sound = GameManager.instance.GetComponent<AudioSource>();
+		try
+		{
+			sound.pitch = Random.Range(.25f, .7f);
+			sound.Play();
+		} catch {}
 		if (other.attachedRigidbody.name == "Player")
 		{
 			GameManager.instance.kill();
-			sound.Play();
 		}
 		else if (other.attachedRigidbody.name == "BulletCapsule")
 		{
-			GameManager.instance.incScore();
-			sound.pitch = Random.Range(.25f, .7f);
-			sound.Play();
 			Destroy(other.gameObject.transform.parent.gameObject);
-			Destroy(gameObject.transform.parent.gameObject);
+			Explode();
 		}
 		else if (other.attachedRigidbody.name == "SuperBulletCapsule")
 		{
-			GameManager.instance.incScore();
-			sound.pitch = Random.Range(.25f, .7f);
-			sound.Play();
-			Destroy(gameObject.transform.parent.gameObject);
+			Explode();
 		}
+	}
+
+	private void Explode()
+	{
+		GameManager.instance.incScore();
+		Destroy(gameObject.transform.parent.gameObject);
+		GameObject e = Instantiate(explosion) as GameObject;
+		e.transform.position = transform.position;
 	}
 }

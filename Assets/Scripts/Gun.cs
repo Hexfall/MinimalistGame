@@ -51,9 +51,9 @@ public class Gun : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (heat > 0)
+		if (heat > 0 && !GameManager.instance.dead)
 			heat -= Time.fixedDeltaTime;
-		if (superHeat > 0)
+		if (superHeat > 0 && !GameManager.instance.dead)
 			superHeat -= Time.fixedDeltaTime;
 		if (superHeat + superDuration >= superCooldown)
 			superActive = true;
