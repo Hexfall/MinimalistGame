@@ -14,6 +14,19 @@ public class Gun : MonoBehaviour
 	public AudioSource sound;
 	private bool superActive = false;
 	private GameObject b;
+	public GameObject cooldownLocation;
+	public GameObject cooldownBar;
+	public int cdBars;
+	private GameObject[] cdBarArray;
+	private int cdBarPointer = 0;
+	private float angle;
+
+	void Start()
+	{
+		cdBarArray = new GameObject[cdBars];
+		angle = 360.0f / (float)cdBars;
+		superHeat = superCooldown;
+	}
 
     // Update is called once per frame
     void Update()
@@ -45,5 +58,20 @@ public class Gun : MonoBehaviour
 			superActive = true;
 		else
 			superActive = false;
+		if (!superActive)
+		{
+			if (Mathf.Floor((superCooldown - superDuration - superHeat) / (superCooldown - superDuration) * cdBars) > cdBarPointer)
+			{
+				cdBarArray[cdBarPointer] = Instantiate(cooldownBar) as GameObject;
+				cdBarArray[cdBarPointer].transform.parent = cooldownLocation.transform;
+				cdBarArray[cdBarPointer].transform.localPosition = new Vector3(0, 0, 0);
+				cdBarArray[cdBarPointer].transform.Rotate(0, 0, - angle * cdBarPointer - angle / 2);
+				cdBarPointer++;
+			}
+		}
+		else
+		{
+
+		}
 	}
 }
