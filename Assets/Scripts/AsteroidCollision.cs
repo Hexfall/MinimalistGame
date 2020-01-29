@@ -20,5 +20,12 @@ public class AsteroidCollision : MonoBehaviour
 			Destroy(other.gameObject.transform.parent.gameObject);
 			Destroy(gameObject.transform.parent.gameObject);
 		}
+		else if (other.attachedRigidbody.name == "SuperBulletCapsule")
+		{
+			GameManager.instance.incScore();
+			sound.pitch = Random.Range(.25f, .7f);
+			sound.Play();
+			Destroy(gameObject.transform.parent.gameObject);
+		}
 	}
 }
