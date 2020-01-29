@@ -20,12 +20,13 @@ public class Gun : MonoBehaviour
 	private GameObject[] cdBarArray;
 	private int cdBarPointer = 0;
 	private float angle;
+	public Color ready;
+	public Color notReady;
 
 	void Start()
 	{
 		cdBarArray = new GameObject[cdBars];
 		angle = 360.0f / (float)cdBars;
-		superHeat = superCooldown;
 	}
 
     // Update is called once per frame
@@ -66,12 +67,31 @@ public class Gun : MonoBehaviour
 				cdBarArray[cdBarPointer].transform.parent = cooldownLocation.transform;
 				cdBarArray[cdBarPointer].transform.localPosition = new Vector3(0, 0, 0);
 				cdBarArray[cdBarPointer].transform.Rotate(0, 0, - angle * cdBarPointer - angle / 2);
+				ChangeColor(cdBarArray[cdBarPointer], notReady);
 				cdBarPointer++;
+			}
+			if (cdBarPointer == cdBars)
+			{
+				for (int i = 0; i < cooldownLocation.transform.childCount; i++)
+					ChangeColor(cooldownLocation.transform.GetChild(i).gameObject, ready);
 			}
 		}
 		else
 		{
+			if (Mathf.Floor((superHeat + superDuration - superCooldown) / superDuration * cdBars) < cdBarPointer)
+			{
+				cdBarPointer--;
+				Destroy(cdBarArray[cdBarPointer]);
+			}
+		}
+	}
 
+	void ChangeColor(GameObject parent, Color color)
+	{
+		for (int i = 0; i < parent.transform.childCount; i++)
+		{
+			SpriteRenderer sprite = parent.transform.GetChild(i).GetComponent<SpriteRenderer>();
+			sprite.color = color;
 		}
 	}
 }
